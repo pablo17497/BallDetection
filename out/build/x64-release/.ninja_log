@@ -1,0 +1,16 @@
+# ninja log v6
+282	6464	8034045711459280	CMakeFiles/PuttingSimulator.dir/src/services/opencv_reader.cpp.obj	d3e0b7b3bf1f32e2
+143	7714	8038474613779252	CMakeFiles/PuttingSimulator.dir/src/main.cpp.obj	68bc8399354c2f04
+7716	15618	8038474689505691	PuttingSimulator.exe	4f26e805d5b5bf41
+274	6543	8034045711389274	CMakeFiles/PuttingSimulator.dir/src/pipeline/factory.cpp.obj	d7e24d863ab70f32
+70	8159	8040172939407688	build.ninja	688108b74b2e3cbc
+206	9824	8038467461693841	CMakeFiles/PuttingSimulator.dir/src/pipeline/pipeline.cpp.obj	f76eca4d4cbb9035
+277	6300	8038467462397468	CMakeFiles/PuttingSimulator.dir/src/udpSender.cpp.obj	1cb8629c7028e840
+116	40401	8038472318246284	CMakeFiles/PuttingSimulator.dir/src/services/ball_detector.cpp.obj	9f379b395aa13346
+70	8159	8040172939327683	D:/CppProjects/PuttingSimulator/out/build/x64-Release/cmake_install.cmake	688108b74b2e3cbc
+653	8702	8057675791182684	CMakeFiles/PuttingSimulator.dir/src/services/udp_sender.cpp.obj	889fdc51106b8ba0
+586	8810	8057675790502621	CMakeFiles/PuttingSimulator.dir/src/services/opencv_reader.cpp.obj	d3e0b7b3bf1f32e2
+412	8980	8057675788762465	CMakeFiles/PuttingSimulator.dir/src/main.cpp.obj	68bc8399354c2f04
+557	9843	8057675790222586	CMakeFiles/PuttingSimulator.dir/src/pipeline/pipeline.cpp.obj	f76eca4d4cbb9035
+570	10223	8057675790352605	CMakeFiles/PuttingSimulator.dir/src/pipeline/factory.cpp.obj	d7e24d863ab70f32
+612	35713	8057675790772649	CMakeFiles/PuttingSimulator.dir/src/services/ball_detector.cpp.obj	9f379b395aa13346
