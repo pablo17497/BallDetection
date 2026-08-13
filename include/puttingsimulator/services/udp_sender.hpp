@@ -9,9 +9,11 @@ namespace puttingsimulator {
     class UdpEventSender : public EventSink {
 
         public:
-            bool initialize_udp_sender(int port);
+			bool initialize() override;
+			bool initialize_udp_sender(int port);
             void publish(const PipelineEvent& event) override;
             void sendUdp(std::string message);
+			void clean_up() override;
             bool clean_up_udp_sender();
 
         private:

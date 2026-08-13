@@ -1,3 +1,0 @@
-D:/CppProjects/PuttingSimulator/out/build/x64-Release/CMakeFiles/PuttingSimulator.dir
-D:/CppProjects/PuttingSimulator/out/build/x64-Release/CMakeFiles/edit_cache.dir
-D:/CppProjects/PuttingSimulator/out/build/x64-Release/CMakeFiles/rebuild_cache.dir

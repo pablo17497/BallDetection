@@ -8,13 +8,16 @@ env/
 
 # Visual Studio
 .vs/
+out/
+*.user
+*.suo
 
 # Windows
 Thumbs.db
 
 # Build artifacts
-CMakeLists.txt
-CMakePresets.json
+# CMakeLists.txt
+# CMakePresets.json
 
 # Test caches
 app/

@@ -11,6 +11,11 @@ namespace puttingsimulator {
     }
 
     void PuttingSimPipeline::start() {
+        if (!eventSink_->initialize())
+        {
+            std::cerr << "Failed to initialize event sink\n";
+            return;
+        }
         running_ = true;
         reader_->start();
         readerThread_ = std::thread(&PuttingSimPipeline::readerLoop, this);
@@ -30,6 +35,7 @@ namespace puttingsimulator {
         if (detectThread_.joinable()) {
             detectThread_.join();
         }
+        eventSink_->clean_up();
 
         auto readStats = computeStats(timing_history_, [](const timings& t) { return t.read; });
         auto setupStats = computeStats(timing_history_, [](const timings& t) { return t.setup; });
@@ -101,11 +107,19 @@ namespace puttingsimulator {
             Detection det = detector_->detect(frame);
             auto eventType = stateMachine_.update(det);
             if (eventType.has_value()) {
-                PipelineEvent event {
-                    *eventType,
-                    std::chrono::steady_clock::now()
-                };
+                PipelineEvent event;
+				event.type = *eventType;
+				event.timestamp = std::chrono::system_clock::now();
+                if (eventType == EventType::ShotDetected) {
+                    if (det.speed && det.aim) {
+                        event.data = DetectionData {
+                            *det.speed,
+                            *det.aim
+                        };
+                    }
+                }
                 eventSink_->publish(event);
+                std::cout << "Event published\n";
             }
             {
                 std::unique_lock<std::mutex> lock(detectMutex_);

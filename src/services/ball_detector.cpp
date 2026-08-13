@@ -5,6 +5,7 @@
 #include <cmath>
 #include <Eigen/Dense>
 #include <vector>
+#include <iostream>
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -55,6 +56,13 @@ namespace puttingsimulator {
 
         ball_center_.reset();
         ball_radius_.reset();
+
+		if (shot_calculated_) {
+			shot_calculated_ = false;
+			impact_detected_ = false;
+			frame_since_impact_ = 0;
+			speed_list_.clear();
+		}
 
         cv::Mat frame = captured.image;
 
@@ -201,6 +209,7 @@ namespace puttingsimulator {
             float norm = std::sqrt(std::pow(ball_pos_end_->x - ball_pos_start_->x, 2) + std::pow(ball_pos_end_->y - ball_pos_start_->y, 2));
             cv::Point2f direction((ball_pos_end_->x - ball_pos_start_->x) / norm, (ball_pos_end_->y - ball_pos_start_->y) / norm);
             aim = direction;
+			shot_calculated_ = true;
         }
 
         auto t12 = std::chrono::steady_clock::now();
@@ -222,10 +231,20 @@ namespace puttingsimulator {
         Detection result;
         result.center = ball_center_;
         result.radius = ball_radius_;
-        result.speed = v0;
-        result.aim = aim;
+		if (shot_calculated_) {
+			result.speed = v0;
+			result.aim = aim;
+			result.ShotDetected = true;
+		}
+		else {
+			result.speed = std::nullopt;
+			result.aim = std::nullopt;
+			result.ShotDetected = false;
+		}
+        result.BallDetected = ball_center_.has_value();
         result.frame = frame;
         result.timings = detectTimings;
+		std::cout << "Ball center: " << ball_center_.value_or(cv::Point2f(0, 0)) << " Ball detected: " << ball_center_.has_value() << "\n";
 
         return result;
     }

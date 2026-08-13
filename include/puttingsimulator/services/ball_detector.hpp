@@ -26,6 +26,7 @@ namespace puttingsimulator {
             bool kalman_initialized_ = false;
             bool has_iterated_ = false;
             bool impact_detected_ = false;
+			bool shot_calculated_ = false;
         
             int frame_since_impact_ = 0;
 

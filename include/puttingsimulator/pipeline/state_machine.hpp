@@ -7,9 +7,10 @@
 namespace puttingsimulator {
 
     enum class VisionState {
-        WaitingForBall,
-        BallReady,
-        TrackingShot
+        Calibration,
+        SearchingBall,
+        BallDetected,
+		ShotDetected,
     };
 
     class StateMachine {
@@ -18,6 +19,6 @@ namespace puttingsimulator {
             std::optional<EventType> update(const Detection& det);
 
         private:
-            VisionState state_ = VisionState::WaitingForBall;
+            VisionState state_ = VisionState::Calibration;
     };
 }
